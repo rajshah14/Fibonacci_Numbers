@@ -1,7 +1,4 @@
 '''
-# Problem Statement
-
-
 # Software, Product, and Embedded Engineering Candidates
 
 In the programming language of your choice, write a program
@@ -13,9 +10,7 @@ generating the first n Fibonacci numbers F(n), printing ...
 
 Bonus points for efficient implementation, testing, documentation,
 and/or upload your code to GitHub.
-'''
 
-'''
 ///////////////////////////////////////////////////////////////////////
 // Filename: test.py
 //
@@ -27,36 +22,52 @@ and/or upload your code to GitHub.
 // ... "Fizz" when f(n) is divisible by 5.
 // ... "BuzzFizz" when f(n) is prime.
 // ... the value f(n) otherwise.
-//
+// ... first checks for the prime numbers
+// ... then checks for divisibality by 3 and 5
+// ... program only prints one of conditions in the order of occurance
+// ... prime number check, divisibality by 5 or divisibality by 3
 ///////////////////////////////////////////////////////////////////////
 '''
-# Divide operation(by 3 and by 5)
+
+# Divide by 3 operation
 
 
 def divBy_op(b):
-    if ((b % 3) == 0):
-        print "Buzz"
-        return True
+    flag = False
+    if ((b % 5) == 0):
+        print str(b) + " :Fizz"
+        flag = True
+    elif (flag is False) and ((b % 3) == 0):
+        print str(b) + " :Buzz"
+        flag = True
+    return flag
+
+
+# Divide by 5 operation
+'''def divBy_5(b):
     if ((b % 5) == 0):
         print "Fizz"
         return True
-
+'''
 
 # To check if the number is prime
+
+
 def primeCheck(b):
     if b > 1:
         for i in range(2, b):
             if (b % i) == 0:
                 break
         else:
-            print "BuzzFizz"
+            print str(b) + " :BuzzFizz"
             return True
 '''
 ///////////////////////////////////////////////////////////////////////
 // Purpose:    Generates Fibonacci Sequence
 // Input:      n
 // Returns:    Nothing / void
-// Calls:      divBy_op(), primeCheck();
+// Calls:      divBy_3(), divBy_5(), primeCheck();
+// Notes:      printing the value f(n) when not prime or divisible be 3 or 5.
 ///////////////////////////////////////////////////////////////////////
 '''
 
@@ -69,8 +80,10 @@ def fibo(n):
         t = a
         a = b
         b += t
-#       function calls to  prime number checking and divide by operation
-        if divBy_op(b) == True or primeCheck(b) == True:
+#       Checking is the number is divisible by 3 or 5 or if it is a prime number
+        if primeCheck(b) == True:
+            continue
+        elif divBy_op(b) == True:
             continue
 #       If none of the above conditions are True print the fibonacci number
         else:
@@ -78,7 +91,8 @@ def fibo(n):
 
 totalNumber = int(raw_input("Enter the number of Fibonacci numbers required:"))
 if totalNumber < 2:
-    print "please input a number greater than 2"
+    print "please input required fibanacci numbers greater than 2"
 else:
-    print ("required fibonacci series:")
+    print ("required fibonacci series is :")
     fibo(totalNumber)
+    
