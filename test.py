@@ -57,7 +57,6 @@ def primeCheck(b):
 // Input:      n
 // Returns:    Nothing / void
 // Calls:      divBy_op(), primeCheck();
-// Notes:      printing the value f(n) when not prime or divisible be 3 or 5.
 ///////////////////////////////////////////////////////////////////////
 '''
 
